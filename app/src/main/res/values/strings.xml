@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ShowApplication</string>
+    <string name="view_item">VIEW ITEM</string>
 </resources>
