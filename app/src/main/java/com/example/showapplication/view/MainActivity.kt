@@ -1,13 +1,16 @@
 package com.example.showapplication.view
 
 import android.database.Cursor
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.showapplication.ImageDownloader
 import com.example.showapplication.R
 import com.example.showapplication.adapter.CustomerAdapter
+import com.example.showapplication.fragment.ImageFragment
 import com.example.showapplication.model.Customer
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,10 +19,12 @@ class MainActivity : AppCompatActivity(), CustomerAdapter.CustomerAdapterDelagat
     private val contentUrl =
         "content://com.example.entryapplication.provider.CustomerProvider/customer"
     private val customerList = mutableListOf<Customer>()
+    private lateinit var imageFragment: ImageFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        getCustomers()
 
         recycler_view_customers.adapter = CustomerAdapter(customerList,this )
         recycler_view_customers.layoutManager = LinearLayoutManager(this)
@@ -27,7 +32,6 @@ class MainActivity : AppCompatActivity(), CustomerAdapter.CustomerAdapterDelagat
 
     override fun onResume() {
         super.onResume()
-        getCustomers()
     }
 
     private fun getCustomers() {
@@ -65,5 +69,8 @@ class MainActivity : AppCompatActivity(), CustomerAdapter.CustomerAdapterDelagat
     }
 
     override fun viewItem(item: String) {
+        imageFragment = ImageFragment(item)
+
+        supportFragmentManager.beginTransaction().replace(R.id.frame_layout_image, imageFragment).addToBackStack(null).commit()
     }
 }
