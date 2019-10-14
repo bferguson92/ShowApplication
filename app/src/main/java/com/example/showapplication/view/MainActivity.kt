@@ -1,13 +1,11 @@
 package com.example.showapplication.view
 
 import android.database.Cursor
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.showapplication.ImageDownloader
 import com.example.showapplication.R
 import com.example.showapplication.adapter.CustomerAdapter
 import com.example.showapplication.fragment.ImageFragment
@@ -28,11 +26,9 @@ class MainActivity : AppCompatActivity(), CustomerAdapter.CustomerAdapterDelagat
 
         recycler_view_customers.adapter = CustomerAdapter(customerList,this )
         recycler_view_customers.layoutManager = LinearLayoutManager(this)
+
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     private fun getCustomers() {
         val uri = Uri.parse(contentUrl)
@@ -50,7 +46,6 @@ class MainActivity : AppCompatActivity(), CustomerAdapter.CustomerAdapterDelagat
                     while (values.moveToNext()) {
                         customerList.add(buildDisplay(values))
                     }
-                    //TODO: CREATE RECYCLER VIEW ADAPTER
                     recycler_view_customers?.adapter?.notifyDataSetChanged()
                 }
                 values.close()
@@ -70,7 +65,6 @@ class MainActivity : AppCompatActivity(), CustomerAdapter.CustomerAdapterDelagat
 
     override fun viewItem(item: String) {
         imageFragment = ImageFragment(item)
-
         supportFragmentManager.beginTransaction().replace(R.id.frame_layout_image, imageFragment).addToBackStack(null).commit()
     }
 }

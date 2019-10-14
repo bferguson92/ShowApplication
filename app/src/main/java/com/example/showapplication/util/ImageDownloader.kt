@@ -1,8 +1,7 @@
-package com.example.showapplication
+package com.example.showapplication.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.os.AsyncTask
 import android.util.Log
 import java.net.URL

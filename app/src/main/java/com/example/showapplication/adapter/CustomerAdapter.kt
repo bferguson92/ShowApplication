@@ -33,7 +33,7 @@ class CustomerAdapter(
             nameText.text = customerList[position].name
             relationText.text = customerList[position].relation
             viewButton.setOnClickListener{
-               delegator.viewItem(customerList[position].relation)
+                delegator.viewItem(customerList[position].relation)
             }
         }
     }

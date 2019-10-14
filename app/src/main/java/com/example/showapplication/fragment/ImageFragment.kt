@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.showapplication.ImageDownloader
+import com.example.showapplication.util.ImageDownloader
 import com.example.showapplication.R
 import com.example.showapplication.util.Constants
 import kotlinx.android.synthetic.main.image_fragment_layout.*
